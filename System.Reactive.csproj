@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B201C111-F231-4D4A-9500-DF2CA8D5FD33}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>System.Reactive</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>System.Reactive</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\AsyncLock.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\CatchScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\ConcurrencyAbstractionLayer.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\ConcurrencyAbstractionLayer.Default.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\CurrentThreadScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\DefaultScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\DisableOptimizationsScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\ImmediateScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\LocalScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\LocalScheduler.TimerQueue.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\ScheduledItem.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.Async.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.Recursive.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.Services.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.Services.Emulation.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.Simple.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Scheduler.Wrappers.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\SchedulerDefaults.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\SchedulerOperation.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\SchedulerQueue.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\SchedulerWrapper.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Stopwatch.Default.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Synchronization.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Synchronization.ObserveOn.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\Synchronization.Synchronize.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Concurrency\SynchronizationContextScheduler.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\AnonymousDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\BooleanDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\CancellationDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\CompositeDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\ContextDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\DefaultDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\Disposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\MultipleAssignmentDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\RefCountDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\ScheduledDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\SerialDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Disposables\SingleAssignmentDisposable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\AsyncLockObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\AutoDetachObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\CheckedObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\ConcurrentDictionary.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\ConcurrentQueue.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Constants.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\ExceptionServices.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\ExceptionServices.Default.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\HostLifecycleService.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\ImmutableList.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Lazy.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Observers.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\PlatformEnlightenmentProvider.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\PriorityQueue.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Producer.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\SafeObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\ScheduledObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Semaphore.Silverlight.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Semaphore.Xna.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Sink.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\Stubs.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\SynchronizationContextExtensions.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\SynchronizedObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\SystemClock.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Internal\SystemClock.Default.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\AnonymousObservable.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\AnonymousObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\AnonymousSafeObserver.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Notification.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\ObservableBase.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\ObserverBase.cs" />
+    <Compile Include="System.Reactive.Core\Reactive\Unit.cs" />
+    <Compile Include="System.Reactive.Core\GlobalSuppressions.cs" />
+    <Compile Include="System.Reactive.Core\InternalsVisibleTo.cs" />
+    <Compile Include="System.Reactive.Core\NamespaceDocs.cs" />
+    <Compile Include="System.Reactive.Core\Observable.Extensions.cs" />
+    <Compile Include="System.Reactive.Core\Observer.Extensions.cs" />
+    <Compile Include="System.Reactive.Core\Strings_Core.Generated.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Concurrency\IScheduledItem.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Concurrency\IScheduler.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Concurrency\ISchedulerLongRunning.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Concurrency\ISchedulerPeriodic.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Concurrency\IStopwatch.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Concurrency\IStopwatchProvider.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Disposables\ICancelable.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Linq\IGroupedObservable.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Linq\IQbservable.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Linq\IQbservableProvider.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Subjects\IConnectableObservable.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Subjects\ISubject.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\Subjects\ISubject.Multi.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\IEventPattern.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\IEventPatternSource.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\IEventSource.cs" />
+    <Compile Include="System.Reactive.Interfaces\Reactive\IObserver.Result.cs" />
+    <Compile Include="System.Reactive.Interfaces\AssemblyFileVersionAttribute.cs" />
+    <Compile Include="System.Reactive.Interfaces\DateTimeOffset.cs" />
+    <Compile Include="System.Reactive.Interfaces\GlobalSuppressions.cs" />
+    <Compile Include="System.Reactive.Interfaces\IObservable.cs" />
+    <Compile Include="System.Reactive.Interfaces\IObserver.cs" />
+    <Compile Include="System.Reactive.Interfaces\NamespaceDocs.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Concurrency\HistoricalScheduler.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Concurrency\VirtualTimeScheduler.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Concurrency\VirtualTimeScheduler.Extensions.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\AnonymousEnumerable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\BinaryObserver.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\ConcatSink.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\Constants.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\Either.Generic.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\HashSet.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\Helpers.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\IConcatenatable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\IEvaluatableObservable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\Lookup.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\PushPullAdapter.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\QueryServices.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\ReflectionUtils.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Internal\TailRecursiveSink.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Joins\ActivePlan.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Joins\JoinObserver.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Joins\Pattern.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Joins\Plan.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\_.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\AddRef.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Aggregate.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\All.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Amb.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Any.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\AsObservable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Average.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Buffer.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Case.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Cast.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Catch.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Collect.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\CombineLatest.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Concat.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Contains.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Count.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\DefaultIfEmpty.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Defer.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Delay.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\DelaySubscription.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Dematerialize.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Distinct.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\DistinctUntilChanged.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Do.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\DoWhile.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ElementAt.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Empty.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Finally.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\FirstAsync.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\For.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ForEach.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\FromEvent.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\FromEventPattern.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Generate.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\GetEnumerator.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\GroupBy.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\GroupByUntil.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\GroupJoin.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\If.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\IgnoreElements.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\IsEmpty.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Join.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\LastAsync.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Latest.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\LongCount.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Materialize.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Max.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\MaxBy.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Merge.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Min.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\MinBy.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\MostRecent.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Multicast.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Never.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Next.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ObserveOn.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\OfType.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\OnErrorResumeNext.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\PushToPullAdapter.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Range.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\RefCount.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Repeat.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Return.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Sample.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Scan.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Select.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\SelectMany.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\SequenceEqual.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\SingleAsync.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Skip.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\SkipLast.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\SkipUntil.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\SkipWhile.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Sum.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Switch.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Synchronize.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Take.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TakeLast.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TakeLastBuffer.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TakeUntil.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TakeWhile.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Throttle.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Throw.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TimeInterval.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Timeout.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Timer.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Timestamp.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ToArray.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ToDictionary.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ToList.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ToLookup.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\ToObservable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Using.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Where.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\While.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Window.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\Zip.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\GroupedObservable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\IQueryLanguage.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\LocalQueryMethodImplementationTypeAttribute.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Aggregates.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Async.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Awaiter.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Binding.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Blocking.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Concurrency.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Conversions.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Creation.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Events.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Imperative.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Joins.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Multiple.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Single.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.StandardSequenceOperators.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable.Time.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observable_.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Aggregates.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Async.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Awaiter.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Binding.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Blocking.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Concurrency.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Conversions.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Creation.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Events.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Imperative.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Joins.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Multiple.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Single.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.StandardSequenceOperators.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage.Time.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\QueryLanguage_.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Subjects\AsyncSubject.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Subjects\BehaviorSubject.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Subjects\ConnectableObservable.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Subjects\ReplaySubject.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Subjects\Subject.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Subjects\Subject.Extensions.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Threading\Tasks\NamespaceDoc.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Threading\Tasks\TaskObservableExtensions.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\EventPattern.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\EventPatternSource.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\EventPatternSourceBase.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\EventSource.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\TimeInterval.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Timestamped.cs" />
+    <Compile Include="System.Reactive.Linq\GlobalSuppressions.cs" />
+    <Compile Include="System.Reactive.Linq\InternalsVisibleTo.cs" />
+    <Compile Include="System.Reactive.Linq\NamespaceDocs.cs" />
+    <Compile Include="System.Reactive.Linq\Strings_Linq.Generated.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="System.Reactive.Core\Strings_Core.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="System.Reactive.Linq\Strings_Linq.resx" />
+    <EmbeddedResource Include="System.Reactive.Core\Strings_Core.resources">
+      <LogicalName>System.Reactive.Strings_Core.resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
