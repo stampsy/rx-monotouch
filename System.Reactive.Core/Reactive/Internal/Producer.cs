@@ -10,7 +10,14 @@ namespace System.Reactive
     /// Base class for implementation of query operators, providing performance benefits over the use of Observable.Create.
     /// </summary>
     /// <typeparam name="TSource">Type of the resulting sequence's elements.</typeparam>
-    internal abstract class Producer<TSource> : IObservable<TSource>
+
+#if MONOTOUCH
+    public
+#else
+    internal
+#endif
+
+    abstract class Producer<TSource> : IObservable<TSource>
     {
         /// <summary>
         /// Publicly visible Subscribe method.
@@ -55,7 +62,12 @@ namespace System.Reactive
             return d;
         }
 
-        struct State
+#if MONOTOUCH
+        public class
+#else
+        struct
+#endif
+        State
         {
             public SingleAssignmentDisposable sink;
             public SingleAssignmentDisposable subscription;
