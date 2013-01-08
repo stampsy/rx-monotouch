@@ -245,7 +245,13 @@ namespace System.Reactive.Concurrency
 #if !NO_SERIALIZABLE
         [Serializable]
 #endif
-        struct Pair<T1, T2>
+
+#if MONOTOUCH
+        class
+#else
+        struct
+#endif
+        Pair<T1, T2>
         {
             public T1 First;
             public T2 Second;

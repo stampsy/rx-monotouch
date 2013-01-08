@@ -311,6 +311,7 @@
     <Compile Include="System.Reactive.Linq\InternalsVisibleTo.cs" />
     <Compile Include="System.Reactive.Linq\NamespaceDocs.cs" />
     <Compile Include="System.Reactive.Linq\Strings_Linq.Generated.cs" />
+    <Compile Include="System.Reactive.MonoTouch\ValueWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="System.Reactive.Core\Strings_Core.resx" />
@@ -320,5 +321,8 @@
     <EmbeddedResource Include="System.Reactive.Core\Strings_Core.resources">
       <LogicalName>System.Reactive.Strings_Core.resources</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System.Reactive.MonoTouch\" />
   </ItemGroup>
 </Project>

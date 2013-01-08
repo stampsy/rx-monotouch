@@ -4,6 +4,16 @@ using System.ComponentModel;
 using System.Threading;
 using System.Reactive.Disposables;
 
+#if MONOTOUCH
+
+using SafeTimeSpan = System.Reactive.MonoTouch.ValueWrapper<System.TimeSpan>;
+
+#else
+
+using SafeTimeSpan = System.TimeSpan;
+
+#endif
+
 namespace System.Reactive.Concurrency
 {
     /// <summary>
@@ -28,17 +38,17 @@ namespace System.Reactive.Concurrency
 
 #if !NO_TLS
         [ThreadStatic]
-        static SchedulerQueue<TimeSpan> s_threadLocalQueue;
+        static SchedulerQueue<SafeTimeSpan> s_threadLocalQueue;
 
         [ThreadStatic]
         static IStopwatch s_clock;
 
-        private static SchedulerQueue<TimeSpan> GetQueue()
+        private static SchedulerQueue<SafeTimeSpan> GetQueue()
         {
             return s_threadLocalQueue;
         }
 
-        private static void SetQueue(SchedulerQueue<TimeSpan> newQueue)
+        private static void SetQueue(SchedulerQueue<SafeTimeSpan> newQueue)
         {
             s_threadLocalQueue = newQueue;
         }
@@ -58,11 +68,11 @@ namespace System.Reactive.Concurrency
         
         private static readonly System.Collections.Generic.Dictionary<int, IStopwatch> s_clocks = new System.Collections.Generic.Dictionary<int, IStopwatch>();
 
-        private static SchedulerQueue<TimeSpan> GetQueue()
+        private static SchedulerQueue<SafeTimeSpan> GetQueue()
         {
             lock (s_queues)
             { 
-                var item = default(SchedulerQueue<TimeSpan>);
+                var item = default(SchedulerQueue<SafeTimeSpan>);
                 if (s_queues.TryGetValue(Thread.CurrentThread.ManagedThreadId, out item))
                     return item;
 
@@ -70,7 +80,7 @@ namespace System.Reactive.Concurrency
             }
         }
 
-        private static void SetQueue(SchedulerQueue<TimeSpan> newQueue)
+        private static void SetQueue(SchedulerQueue<SafeTimeSpan> newQueue)
         {
             lock (s_queues)
             {
@@ -139,13 +149,13 @@ namespace System.Reactive.Concurrency
 
             var dt = Time + Scheduler.Normalize(dueTime);
 
-            var si = new ScheduledItem<TimeSpan, TState>(this, state, action, dt);
+            var si = new ScheduledItem<SafeTimeSpan, TState>(this, state, action, dt);
 
             var queue = GetQueue();
 
             if (queue == null)
             {
-                queue = new SchedulerQueue<TimeSpan>(4);
+                queue = new SchedulerQueue<SafeTimeSpan>(4);
                 queue.Enqueue(si);
 
                 CurrentThreadScheduler.SetQueue(queue);
@@ -168,14 +178,14 @@ namespace System.Reactive.Concurrency
 
         static class Trampoline
         {
-            public static void Run(SchedulerQueue<TimeSpan> queue)
+            public static void Run(SchedulerQueue<SafeTimeSpan> queue)
             {
                 while (queue.Count > 0)
                 {
                     var item = queue.Dequeue();
                     if (!item.IsCanceled)
                     {
-                        var wait = item.DueTime - CurrentThreadScheduler.Time;
+                        var wait = (TimeSpan) item.DueTime - CurrentThreadScheduler.Time;
                         if (wait.Ticks > 0)
                         {
                             ConcurrencyAbstractionLayer.Current.Sleep(wait);
