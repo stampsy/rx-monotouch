@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;NO_EXPRESSIONS;NO_LARGEARITY;MONOTOUCH</DefineConstants>
+    <DefineConstants>DEBUG;NO_EXPRESSIONS;NO_LARGEARITY;NO_TASK_DELAY;MONOTOUCH</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -29,7 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <DefineConstants>NO_EXPRESSIONS;NO_LARGEARITY;MONOTOUCH</DefineConstants>
+    <DefineConstants>NO_EXPRESSIONS;NO_LARGEARITY;NO_TASK_DELAY;MONOTOUCH</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -313,6 +313,23 @@
     <Compile Include="System.Reactive.Linq\Strings_Linq.Generated.cs" />
     <Compile Include="System.Reactive.MonoTouch\ValueWrapper.cs" />
     <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TimerSafe.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Internal\ExceptionServicesImpl.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Internal\HostLifecycleNotifications.Windows.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Internal\HostLifecycleNotifications.WindowsPhone.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Internal\PhoneShellThunks.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Internal\PlatformEnlightenmentProvider.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Internal\StopwatchImpl.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\ConcurrencyAbstractionLayerImpl.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\ConcurrencyAbstractionLayerImpl.Windows.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\EventLoopScheduler.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\NewThreadScheduler.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\TaskPoolScheduler.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\Thread.Stub.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\ThreadPoolScheduler.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\Concurrency\ThreadPoolScheduler.Windows.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Reactive\EnlightenmentProvider.cs" />
+    <Compile Include="System.Reactive.PlatformServices\GlobalSuppressions.cs" />
+    <Compile Include="System.Reactive.PlatformServices\Strings_PlatformServices.Generated.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="System.Reactive.Core\Strings_Core.resx" />
@@ -322,6 +339,7 @@
     <EmbeddedResource Include="System.Reactive.Core\Strings_Core.resources">
       <LogicalName>System.Reactive.Strings_Core.resources</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="System.Reactive.PlatformServices\Strings_PlatformServices.resx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Reactive.MonoTouch\" />
