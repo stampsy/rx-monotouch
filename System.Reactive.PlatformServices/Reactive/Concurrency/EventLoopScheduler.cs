@@ -8,6 +8,16 @@ using System.Threading;
 using System.Reactive.Threading;
 #endif
 
+#if MONOTOUCH
+
+using SafeTimeSpan = System.Reactive.MonoTouch.ValueWrapper<System.TimeSpan>;
+
+#else
+
+using SafeTimeSpan = System.TimeSpan;
+
+#endif
+
 namespace System.Reactive.Concurrency
 {
     /// <summary>
@@ -56,18 +66,18 @@ namespace System.Reactive.Concurrency
         /// <summary>
         /// Queue holding work items. Protected by the gate.
         /// </summary>
-        private readonly SchedulerQueue<TimeSpan> _queue;
+        private readonly SchedulerQueue<SafeTimeSpan> _queue;
 
         /// <summary>
         /// Queue holding items that are ready to be run as soon as possible. Protected by the gate.
         /// </summary>
-        private readonly Queue<ScheduledItem<TimeSpan>> _readyList;
+        private readonly Queue<ScheduledItem<SafeTimeSpan>> _readyList;
 
         /// <summary>
         /// Work item that will be scheduled next. Used upon reevaluation of the queue to check whether the next
         /// item is still the same. If not, a new timer needs to be started (see below).
         /// </summary>
-        private ScheduledItem<TimeSpan> _nextItem;
+        private ScheduledItem<SafeTimeSpan> _nextItem;
 
         /// <summary>
         /// Disposable that always holds the timer to dispatch the first element in the queue.
@@ -116,8 +126,8 @@ namespace System.Reactive.Concurrency
 #else
             _evt = new Semaphore(0, int.MaxValue);
 #endif
-            _queue = new SchedulerQueue<TimeSpan>();
-            _readyList = new Queue<ScheduledItem<TimeSpan>>();
+            _queue = new SchedulerQueue<SafeTimeSpan>();
+            _readyList = new Queue<ScheduledItem<SafeTimeSpan>>();
 
             _nextTimer = new SerialDisposable();
 
@@ -159,7 +169,7 @@ namespace System.Reactive.Concurrency
                 throw new ArgumentNullException("action");
 
             var due = _stopwatch.Elapsed + dueTime;
-            var si = new ScheduledItem<TimeSpan, TState>(this, state, action, due);
+            var si = new ScheduledItem<SafeTimeSpan, TState>(this, state, action, due);
 
             lock (_gate)
             {
@@ -291,7 +301,7 @@ namespace System.Reactive.Concurrency
                 _evt.WaitOne();
 #endif
 
-                var ready = default(ScheduledItem<TimeSpan>[]);
+                var ready = default(ScheduledItem<SafeTimeSpan>[]);
 
                 lock (_gate)
                 {
@@ -305,7 +315,7 @@ namespace System.Reactive.Concurrency
                         return;
                     }
 
-                    while (_queue.Count > 0 && _queue.Peek().DueTime <= _stopwatch.Elapsed)
+                    while (_queue.Count > 0 && (TimeSpan)_queue.Peek().DueTime <= _stopwatch.Elapsed)
                     {
                         var item = _queue.Dequeue();
                         _readyList.Enqueue(item);
@@ -318,7 +328,7 @@ namespace System.Reactive.Concurrency
                         {
                             _nextItem = next;
 
-                            var due = next.DueTime - _stopwatch.Elapsed;
+                            var due = (TimeSpan)next.DueTime - _stopwatch.Elapsed;
                             _nextTimer.Disposable = ConcurrencyAbstractionLayer.Current.StartTimer(Tick, next, due);
                         }
                     }
@@ -359,7 +369,7 @@ namespace System.Reactive.Concurrency
             {
                 if (!_disposed)
                 {
-                    var item = (ScheduledItem<TimeSpan>)state;
+                    var item = (ScheduledItem<SafeTimeSpan>)state;
                     if (_queue.Remove(item))
                     {
                         _readyList.Enqueue(item);
