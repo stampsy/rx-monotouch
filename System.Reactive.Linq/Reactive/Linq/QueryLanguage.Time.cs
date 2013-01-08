@@ -526,6 +526,18 @@ namespace System.Reactive.Linq
             return Timer_(period, period, scheduler);
         }
 
+#if MONOTOUCH
+        public virtual IObservable<Unit> IntervalSafe(TimeSpan period)
+        {
+            return TimerSafe_(period, period, SchedulerDefaults.TimeBasedOperations);
+        }
+        
+        public virtual IObservable<Unit> IntervalSafe(TimeSpan period, IScheduler scheduler)
+        {
+            return TimerSafe_(period, period, scheduler);
+        }
+#endif
+
         #endregion
 
         #region + Sample +
@@ -1573,6 +1585,14 @@ namespace System.Reactive.Linq
         {
             return new Timer(dueTime, period, scheduler);
         }
+
+#if MONOTOUCH
+        private static IObservable<Unit> TimerSafe_(TimeSpan dueTime, TimeSpan period, IScheduler scheduler)
+        {
+            return new TimerSafe(dueTime, period, scheduler);
+        }
+#endif
+
 #else
         private IObservable<long> Timer_(TimeSpan dueTime, TimeSpan period, IScheduler scheduler)
         {

@@ -637,6 +637,16 @@ namespace System.Reactive.Linq
             return s_impl.Interval(period);
         }
 
+#if MONOTOUCH
+        public static IObservable<Unit> IntervalSafe(TimeSpan period)
+        {
+            if (period < TimeSpan.Zero)
+                throw new ArgumentOutOfRangeException("period");
+            
+            return s_impl.IntervalSafe(period);
+        }
+#endif
+
         /// <summary>
         /// Returns an observable sequence that produces a value after each period, using the specified scheduler to run timers and to send out observer messages.
         /// </summary>
@@ -661,6 +671,18 @@ namespace System.Reactive.Linq
 
             return s_impl.Interval(period, scheduler);
         }
+
+#if MONOTOUCH
+        public static IObservable<Unit> IntervalSafe(TimeSpan period, IScheduler scheduler)
+        {
+            if (period < TimeSpan.Zero)
+                throw new ArgumentOutOfRangeException("period");
+            if (scheduler == null)
+                throw new ArgumentNullException("scheduler");
+            
+            return s_impl.IntervalSafe(period, scheduler);
+        }
+#endif
 
         #endregion
 

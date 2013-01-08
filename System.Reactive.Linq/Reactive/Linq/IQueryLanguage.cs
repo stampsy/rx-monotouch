@@ -740,6 +740,12 @@ namespace System.Reactive.Linq
         IObservable<TResult> Generate<TState, TResult>(TState initialState, Func<TState, bool> condition, Func<TState, TState> iterate, Func<TState, TResult> resultSelector, Func<TState, DateTimeOffset> timeSelector, IScheduler scheduler);
         IObservable<long> Interval(TimeSpan period);
         IObservable<long> Interval(TimeSpan period, IScheduler scheduler);
+
+#if MONOTOUCH
+        IObservable<Unit> IntervalSafe(TimeSpan period);
+        IObservable<Unit> IntervalSafe(TimeSpan period, IScheduler scheduler);
+#endif
+
         IObservable<TSource> Sample<TSource>(IObservable<TSource> source, TimeSpan interval);
         IObservable<TSource> Sample<TSource>(IObservable<TSource> source, TimeSpan interval, IScheduler scheduler);
         IObservable<TSource> Sample<TSource, TSample>(IObservable<TSource> source, IObservable<TSample> sampler);

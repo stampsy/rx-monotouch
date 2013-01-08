@@ -312,6 +312,7 @@
     <Compile Include="System.Reactive.Linq\NamespaceDocs.cs" />
     <Compile Include="System.Reactive.Linq\Strings_Linq.Generated.cs" />
     <Compile Include="System.Reactive.MonoTouch\ValueWrapper.cs" />
+    <Compile Include="System.Reactive.Linq\Reactive\Linq\Observαble\TimerSafe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="System.Reactive.Core\Strings_Core.resx" />

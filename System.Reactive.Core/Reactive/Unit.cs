@@ -8,7 +8,11 @@ namespace System.Reactive
 #if !NO_SERIALIZABLE
     [Serializable]
 #endif
+#if !MONOTOUCH
     public struct Unit : IEquatable<Unit>
+#else
+    public class Unit : IEquatable<Unit>
+#endif
     {
         /// <summary>
         /// Determines whether the specified Unit values is equal to the current Unit. Because Unit has a single value, this always returns true.
