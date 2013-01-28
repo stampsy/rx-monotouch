@@ -19,7 +19,7 @@ namespace System.Reactive.MonoTouch
 
         public ValueWrapper (T value)
         {
-            Value = Value;
+            Value = value;
         }
 
         public bool Equals (ValueWrapper<T> that)
