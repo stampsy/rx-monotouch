@@ -5,6 +5,12 @@ using System;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 
+#if MONOTOUCH
+using SafeUInt64 = System.Reactive.MonoTouch.ValueWrapper<ulong>;
+#else
+using SafeUInt64 = System.UInt64;
+#endif
+
 namespace System.Reactive.Linq.Observαble
 {
     class Throttle<TSource> : Producer<TSource>
@@ -58,7 +64,7 @@ namespace System.Reactive.Linq.Observαble
 
             public void OnNext(TSource value)
             {
-                var currentid = default(ulong);
+                SafeUInt64 currentid;
                 lock (_gate)
                 {
                     _hasValue = true;
@@ -71,11 +77,11 @@ namespace System.Reactive.Linq.Observαble
                 d.Disposable = _parent._scheduler.Schedule(currentid, _parent._dueTime, Propagate);
             }
 
-            private IDisposable Propagate(IScheduler self, ulong currentid)
+            private IDisposable Propagate(IScheduler self, SafeUInt64 currentid)
             {
                 lock (_gate)
                 {
-                    if (_hasValue && _id == currentid)
+                    if (_hasValue && _id == (ulong)currentid)
                         base._observer.OnNext(_value);
                     _hasValue = false;
                 }
