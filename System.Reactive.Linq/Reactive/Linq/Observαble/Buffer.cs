@@ -8,6 +8,10 @@ using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Threading;
 
+#if MONOTOUCH
+using SafeInt = System.Reactive.MonoTouch.ValueWrapper<System.Int32>;
+#endif
+
 namespace System.Reactive.Linq.Observαble
 {
     class Buffer<TSource> : Producer<IList<TSource>>
@@ -216,7 +220,12 @@ namespace System.Reactive.Linq.Observαble
                 m.Disposable = _parent._scheduler.Schedule(new State { isSpan = isSpan, isShift = isShift }, ts, Tick);
             }
 
-            struct State
+#if MONOTOUCH
+            class
+#else
+            struct
+#endif
+            State
             {
                 public bool isSpan;
                 public bool isShift;
@@ -385,17 +394,17 @@ namespace System.Reactive.Linq.Observαble
                 var m = new SingleAssignmentDisposable();
                 _timerD.Disposable = m;
 
-                m.Disposable = _parent._scheduler.Schedule(id, _parent._timeSpan, Tick);
+                m.Disposable = _parent._scheduler.Schedule((SafeInt)id, _parent._timeSpan, Tick);
             }
 
-            private IDisposable Tick(IScheduler self, int id)
+            private IDisposable Tick(IScheduler self, SafeInt id)
             {
                 var d = Disposable.Empty;
 
                 var newId = 0;
                 lock (_gate)
                 {
-                    if (id != _windowId)
+                    if ((int)id != _windowId)
                         return d;
 
                     _n = 0;
