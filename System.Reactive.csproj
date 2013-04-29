@@ -340,6 +340,9 @@
       <LogicalName>System.Reactive.Strings_Core.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="System.Reactive.PlatformServices\Strings_PlatformServices.resx" />
+    <EmbeddedResource Include="System.Reactive.Linq\Strings_Linq.resources">
+      <LogicalName>System.Reactive.Strings_Linq.resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System.Reactive.MonoTouch\" />
