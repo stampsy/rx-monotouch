@@ -47,12 +47,11 @@ namespace System.Reactive.Linq.Observαble
 
 				// 04/30 Dan Abramov <dan.abramov@gmail.com>
 
-				// Rx source code says base.Dispose(), but this seems to blow up Mono
-				// with MethodAccessException because base class' Dispose is "private new".
+				// In Mono 2.10, calling base.Dispose() causes MethodAccessException
+				// See http://stackoverflow.com/q/16309317/458193
 
-				// I'll replace this with this.Dispose() for now.
-
-				this.Dispose ();
+				// base.Dispose();
+				this.Dispose();
             }
         }
     }
