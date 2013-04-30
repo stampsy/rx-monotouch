@@ -44,7 +44,15 @@ namespace System.Reactive.Linq.Observαble
             public override void OnError(Exception error)
             {
                 base._observer.OnError(error);
-                base.Dispose();
+
+				// 04/30 Dan Abramov <dan.abramov@gmail.com>
+
+				// Rx source code says base.Dispose(), but this seems to blow up Mono
+				// with MethodAccessException because base class' Dispose is "private new".
+
+				// I'll replace this with this.Dispose() for now.
+
+				this.Dispose ();
             }
         }
     }
