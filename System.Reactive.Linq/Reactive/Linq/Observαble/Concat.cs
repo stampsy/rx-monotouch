@@ -45,13 +45,13 @@ namespace System.Reactive.Linq.Observαble
             {
                 base._observer.OnError(error);
 
-				// 04/30 Dan Abramov <dan.abramov@gmail.com>
+                // 04/30 Dan Abramov <dan.abramov@gmail.com>
 
-				// In Mono 2.10, calling base.Dispose() causes MethodAccessException
-				// See http://stackoverflow.com/q/16309317/458193
+                // In Mono 2.10, calling base.Dispose() causes MethodAccessException
+                // See http://stackoverflow.com/q/16309317/458193
 
-				// base.Dispose();
-				this.Dispose();
+                // base.Dispose();
+                this.Dispose();
             }
         }
     }
