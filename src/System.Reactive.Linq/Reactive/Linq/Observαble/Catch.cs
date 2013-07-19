@@ -56,7 +56,14 @@ namespace System.Reactive.Linq.Observαble
             public override void OnCompleted()
             {
                 base._observer.OnCompleted();
-                base.Dispose();
+
+				// 06/12 Dan Abramov <dan.abramov@gmail.com>
+
+				// In Mono 2.10, calling base.Dispose() causes MethodAccessException
+				// See http://stackoverflow.com/q/16309317/458193
+
+				// base.Dispose();
+				this.Dispose();
             }
 
             protected override void Done()
@@ -66,7 +73,13 @@ namespace System.Reactive.Linq.Observαble
                 else
                     base._observer.OnCompleted();
 
-                base.Dispose();
+				// 06/12 Dan Abramov <dan.abramov@gmail.com>
+
+				// In Mono 2.10, calling base.Dispose() causes MethodAccessException
+				// See http://stackoverflow.com/q/16309317/458193
+
+				// base.Dispose();
+				this.Dispose();
             }
         }
     }
