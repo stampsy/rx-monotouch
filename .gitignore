@@ -1,3 +1,5 @@
+*.sln
+
 # mstest test results
 TestResults
 
